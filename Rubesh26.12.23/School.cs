@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Rubesh26._12._23
 {
-    class School : IEnumerable
+    class School : IComparable<Student> // IEnumerable
     {
         string Name;
         private readonly List<Student> Students = new List<Student>();
-        private int currentIndex = -1;
+     //   private int currentIndex = -1;
 
         public School(string name)
         {
@@ -26,27 +26,49 @@ namespace Rubesh26._12._23
 
         public new void ToString()
         {
-           
+            int studentIndex = 0;
+            foreach (var student in Students)
+            {
+                studentIndex++;
+                Console.WriteLine($"{studentIndex}. {student.FIO}");
+               
+            }
         }
 
        
-        IEnumerator IEnumerable.GetEnumerator()
+        //IEnumerator IEnumerable.GetEnumerator()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public int CompareTo(Student student)
         {
-            throw new NotImplementedException();
+            if (student is null) throw new ArgumentException("Пустое значение");
+            return student.grade - student.grade;
         }
     }
 
-    public class EntranceEnumerator : IEnumerator
-    {
-        private readonly Student[] students;
-        private int currentIndex = -1;
+    //public class EntranceEnumerator : IEnumerator
+    //{
+    //    private readonly Student[] students;
+    //    private int currentIndex = -1;
 
-        public EntranceEnumerator(Student[] _students)
-        {
-            this.students = _students;
-        }
+    //    public object Current => throw new NotImplementedException();
 
+    //    public bool MoveNext()
+    //    {
+    //        currentIndex++;
+    //        if(currentIndex >= students.Length)
+    //        {
+    //            return false;
+    //        }
+    //        return true;
+    //    }
 
-    }
+    //    public void Reset()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 
 }
