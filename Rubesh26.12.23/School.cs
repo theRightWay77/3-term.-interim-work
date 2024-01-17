@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rubesh26._12._23
 {
-    class School : IComparable<Student> // IEnumerable
+     class School  // IEnumerable
     {
         string Name;
         private readonly List<Student> Students = new List<Student>();
@@ -30,22 +30,21 @@ namespace Rubesh26._12._23
             foreach (var student in Students)
             {
                 studentIndex++;
-                Console.WriteLine($"{studentIndex}. {student.FIO}");
+                Console.WriteLine($"{studentIndex}. {student.FIO}, {student.grade}, {student.stage.Last()}");
                
             }
         }
 
-       
+
         //IEnumerator IEnumerable.GetEnumerator()
         //{
         //    throw new NotImplementedException();
         //}
-
-        public int CompareTo(Student student)
+       public void Sort()
         {
-            if (student is null) throw new ArgumentException("Пустое значение");
-            return student.grade - student.grade;
+            Students.Sort();
         }
+       
     }
 
     //public class EntranceEnumerator : IEnumerator

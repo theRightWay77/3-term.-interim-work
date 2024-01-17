@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rubesh26._12._23
 {
-    class Student
+    class Student : IComparable<Student>
     {
         static char[] alfavit = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
         static int letterTurn = 0;
@@ -27,6 +27,8 @@ namespace Rubesh26._12._23
             letterTurn++;
             if (letterTurn == 27) letterTurn = 0;
         }
+
+
 
         private void WhichStage(int grade)
         {
@@ -69,5 +71,36 @@ namespace Rubesh26._12._23
             else if (stage.Last() == "higher") stageRU = "старшая";
             return $"{FIO}, {stageRU} школа, {grade} класс, {performance} балла";
         }
+
+        public int CompareTo(Student student)
+        {
+            //if (student is null) throw new ArgumentException("Некорректное значение параметра");
+            //return this.FIO.CompareTo(student.FIO);
+
+            if (this.stage.Count > student.stage.Count)
+                return 1;
+            if (this.stage.Count > student.stage.Count)
+                return -1;
+            else
+            {
+                if (this.grade > student.grade)
+                    return 1;
+                if (this.grade < student.grade)
+                    return -1;
+                else
+                {
+                    return string.Compare(this.FIO, student.FIO);
+                }
+
+            }
+
+                if (this.stage.Last() == student.stage.Last())
+                if (this.grade == student.grade)
+                    if (this.FIO == student.FIO)
+                        return 0;
+            
+                return 1;
+        }
+
     }
 }
